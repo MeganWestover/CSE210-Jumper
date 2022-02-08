@@ -35,6 +35,17 @@ class Guesser:
 class GameBoard:
     def __init__():
         pass
+    def GameBoard(board):
+        print('  ___  ')
+        print(' /___\\')
+        print(' \\   / ')
+        print('  \\ /  ')
+        print('   0   ')
+        print('  /|\\ ')
+        print('  / \\ ')
+        print()
+        print('^^^^^^^')
+        print()
 
 class TerminalService():
     def __init__():
