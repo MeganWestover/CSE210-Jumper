@@ -23,7 +23,7 @@ class Director:
             self._do_outputs()
 
     def _get_inputs(self):
-        '''It shows to the user the fields of the word to be guessed, and ask him to guess a letter.'''
+        '''It shows to the user the fields of the word to be guessed, and asks him to guess a letter.'''
         
         self.word_space = self._wordarray.get_wordlenght()
         print(self.word_space)
@@ -41,9 +41,10 @@ class Director:
         else:
             if self.numberofguesses == 0:
                 self.numberofguesses = 0
-            else:
-                self.numberofguesses += -1
+            #else:
+                #self.numberofguesses += -1
         print(self.numberofguesses)
+
     def _do_outputs(self):
         '''Shows the parachute modification according to the update data and displays the letters guessed by user if apply'''
         continuegame = self._terminal_service.draw_parachute(self.word_slected,self.new_letter,self.word_space,self.guess,self.numberofguesses)
@@ -53,6 +54,7 @@ class Director:
             self.is_playing = True
 
 class Guesser:
+    '''Counts how many matches the user guesses.'''
     def __init__(self):
         pass
 
@@ -82,10 +84,10 @@ class Guesser:
         print()'''
 
 class TerminalService:
-    """This class help us handle terminal operations"""
+    """This class helps us handle terminal operations"""
 
     def __init__(self):
-        '''Constructs a empty list to save the word tobe guessed'''
+        '''Constructs an empty list to save the word to be guessed'''
         self.hideword = []
 
     def write_stripes(self,wordlenght,list):
@@ -196,6 +198,7 @@ class WordArray:
         self._worddisplayed = []
 
     def get_wordselected(self):
+        self._wordselected = self._wordselected.lower()
         return self._wordselected
     def get_wordlenght(self):
         return self._wordlenght
