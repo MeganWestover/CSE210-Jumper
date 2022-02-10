@@ -1,3 +1,11 @@
+'''
+
+Authors: Megan Westover, Brandon Luce, Camilo Camargo, Richard Asare
+
+Jumper/Parachute/Hang Man game
+
+'''
+
 import string
 import random
 
