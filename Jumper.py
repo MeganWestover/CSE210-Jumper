@@ -144,6 +144,7 @@ class TerminalService:
             print()
             cont = True
         elif number_of_guesses == 1:
+            print('    _  ')
             print(' /___\ ')
             print(' \   / ')
             print('  \ /  ')
@@ -155,6 +156,7 @@ class TerminalService:
             print()
             cont = True
         elif number_of_guesses == 2:
+            print(' /___\ ')
             print(' \   / ')
             print('  \ /  ')
             print('   O   ')
@@ -165,6 +167,8 @@ class TerminalService:
             print()
             cont = True
         elif number_of_guesses == 3:
+            print('   __\ ')
+            print(' \   / ')
             print('  \ /  ')
             print('   O   ')
             print('  /|\  ')
@@ -174,6 +178,44 @@ class TerminalService:
             print()
             cont = True
         elif number_of_guesses == 4:
+            print(' \   / ')
+            print('  \ /  ')
+            print('   O   ')
+            print('  /|\  ')
+            print('  / \  ')
+            print()
+            print('^^^^^^^')
+            print()
+            cont = True
+        elif number_of_guesses == 5:
+            print('     / ')
+            print('  \ /  ')
+            print('   O   ')
+            print('  /|\  ')
+            print('  / \  ')
+            print()
+            print('^^^^^^^')
+            print()
+            cont = True
+        elif number_of_guesses == 6:
+            print('  \ /  ')
+            print('   O   ')
+            print('  /|\  ')
+            print('  / \  ')
+            print()
+            print('^^^^^^^')
+            print()
+            cont = True
+        elif number_of_guesses == 7:
+            print('    /  ')
+            print('   O   ')
+            print('  /|\  ')
+            print('  / \  ')
+            print()
+            print('^^^^^^^')
+            print()
+            cont = True
+        elif number_of_guesses == 8:
             print('   x   ')
             print('  /|\  ')
             print('  / \  ')
@@ -184,6 +226,7 @@ class TerminalService:
             cont = False
         
         return cont
+
 
 
 class WordArray:
