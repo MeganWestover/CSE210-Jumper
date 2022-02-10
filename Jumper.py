@@ -11,12 +11,13 @@ class Director:
         self._guesser = Guesser()
         self._terminal_service = TerminalService()
         self.numberofguesses = 0
-        self.worddisplayed = []
+        self.guessedletters = []
 
     def start_game(self):
         '''Starts the game by running the maingame loop'''
         
         self._terminal_service.write_text("Welcome to the jump game!!!!")
+        print("_ _ _ _ _")
         while self.is_playing:
             self._get_inputs()
             self._do_updates()
@@ -26,11 +27,7 @@ class Director:
         '''It shows to the user the fields of the word to be guessed, and asks him to guess a letter.'''
         
         self.word_space = self._wordarray.get_wordlenght()
-        print(self.word_space)
         self.word_slected = self._wordarray.get_wordselected()
-        print(self.word_slected)
-        self.worddisplayed = self._wordarray.get_worddisplayed()
-        print(self.worddisplayed)
         self.new_letter = self._terminal_service.read_text("Guess a letter [a-z]: ")
     
     def _do_updates(self):
@@ -41,13 +38,14 @@ class Director:
         else:
             if self.numberofguesses == 0:
                 self.numberofguesses = 0
-            #else:
-                #self.numberofguesses += -1
-        print(self.numberofguesses)
+                self.guessedletters.append(self.new_letter)
+            else:
+                self.numberofguesses += -1
+                self.guessedletters.append(self.new_letter)
 
     def _do_outputs(self):
         '''Shows the parachute modification according to the update data and displays the letters guessed by user if apply'''
-        continuegame = self._terminal_service.draw_parachute(self.word_slected,self.new_letter,self.word_space,self.guess,self.numberofguesses)
+        continuegame = self._terminal_service.draw_parachute(self.word_slected,self.guessedletters,self.word_space,self.guess,self.numberofguesses)
         if continuegame == False:
             self.is_playing = False
         else:
@@ -67,21 +65,6 @@ class Guesser:
             guess = True
 
         return guess
-
-'''class GameBoard:
-    def __init__():
-        pass
-    def GameBoard(board):
-        print('  ___  ')
-        print(' /___\\')
-        print(' \\   / ')
-        print('  \\ /  ')
-        print('   0   ')
-        print('  /|\\ ')
-        print('  / \\ ')
-        print()
-        print('^^^^^^^')
-        print()'''
 
 class TerminalService:
     """This class helps us handle terminal operations"""
@@ -118,22 +101,35 @@ class TerminalService:
 
     def draw_parachute(self,guessword,letter,wordlenght,guess,number_of_guesses):
         '''displays the word guessing status and the parachute situation'''
-    
-        i = 0
-        self.hideword = list(guessword)
-        if guess:
-            for i in range(wordlenght):
-                if letter == guessword[i]:
-                    print(letter,end=" "),
+
+        i=0
+        k = 0
+        for _ in (guessword):
+            if guessword[i] in letter:
+                print(guessword[i],end=" "),
+                a = guessword.count(guessword[i])
+                if a > 1:
+                    k += 1
                 else:
-                    print("_",end=" "),
-            print(" \n")
-            
-            cont = True
-        else:
-            for i in range(wordlenght):
+                    k += 1
+            else:
                 print("_",end=" "),
-            print(" \n")
+            i += 1
+        print(" \n")
+
+        if k == len(guessword):
+            print('  ___  ')
+            print(' /___\ ')
+            print(' \   / ')
+            print('  \ /  ')
+            print('   O   ')
+            print('  /|\  ')
+            print('  / \  ')
+            print()
+            print('^^^^^^^')
+            print()
+            print('Congrats you have won!!!!')
+            exit()
 
         if number_of_guesses == 0:
             print('  ___  ')
@@ -209,9 +205,6 @@ class WordArray:
             self._worddisplayed[i] = "_"
             i += 1
         return self._worddisplayed
-    
-    
-
 
 def main():
     director = Director()
