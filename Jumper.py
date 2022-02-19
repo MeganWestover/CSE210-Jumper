@@ -9,9 +9,11 @@ Jumper/Parachute/Hang Man game
 import string
 import random
 
-class Director: 
-    '''Class that directs the game. Initiates game play
-    and makes it flow the way it should.'''
+
+class Director:
+    """Class that directs the game. Initiates game play
+    and makes it flow the way it should."""
+
     def __init__(self):
         
         self._wordArray = WordArray()
@@ -22,8 +24,7 @@ class Director:
         self.guessedLetters = []
 
     def start_game(self):
-        '''Starts the game by running the maingame loop'''
-        
+        """During game play the director does inputs, updates, and outputs.""" 
         self._terminal_service.write_text("Welcome to the jump game!!!!")
         print("_ _ _ _ _")
         while self.is_playing:
@@ -72,7 +73,7 @@ class Guesser:
         else:
             guess = True
 
-        return guess
+        return guess'''
 
 class TerminalService:
     """This class helps us handle terminal operations"""
@@ -235,14 +236,13 @@ class TerminalService:
         
         return cont
 
-
-
 class WordArray:
     def __init__(self):
         self._array = ["Hello", "Shire", "Bring", "Acorn", "Please", "Close", "Front", "Frame", "Zebra", "Libra", "Speed", "Creed", "Anime", "Silly", "Smart", "Crazy", "Learn", "Stern", "Koala", "Brand", "Stand",  "Happy", "Style", "Miles", "Arrow", "Drama", "Allow", "Apply", "Child", "Crime", "Dress", "Dream", "Drink", "Enemy", "Entry", "Focus", "Fruit", "Glass", "Green", "Group", "Heart", "Guide", "Jones", "Judge", "Knife", "Layer", "March", "Major", "Metal", "Money", "Month", "Motor", "Music", "Panel", "Owner", "North", "Night", "Plane", "Plant", "Point", "Power", "Reply", "River", "Round", "Route", "Rugby", "Scale", "Scene", "Shape", "Smoke", "Sound", "South", "Space", "Sport", "Stock"]
         self._wordSelected = random.choice(self._array)
         self._wordLength = len(self._wordSelected)
         self._wordDisplayed = []
+
 
     def get_wordSelected(self):
         self._wordSelected = self._wordSelected.lower()
