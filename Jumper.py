@@ -1,3 +1,11 @@
+'''
+
+Authors: Megan Westover, Brandon Luce, Camilo Camargo, Richard Asare
+
+Jumper/Parachute/Hang Man game
+
+'''
+
 import string
 import random
 
@@ -6,12 +14,12 @@ class Director:
     and makes it flow the way it should.'''
     def __init__(self):
         
-        self._wordarray = WordArray()
+        self._wordArray = WordArray()
         self.is_playing = True
         self._guesser = Guesser()
         self._terminal_service = TerminalService()
-        self.numberofguesses = 0
-        self.guessedletters = []
+        self.numberOfGuesses = 0
+        self.guessedLetters = []
 
     def start_game(self):
         '''Starts the game by running the maingame loop'''
@@ -26,27 +34,27 @@ class Director:
     def _get_inputs(self):
         '''It shows to the user the fields of the word to be guessed, and asks him to guess a letter.'''
         
-        self.word_space = self._wordarray.get_wordlenght()
-        self.word_slected = self._wordarray.get_wordselected()
+        self.word_space = self._wordArray.get_wordLength()
+        self.word_selected = self._wordArray.get_wordSelected()
         self.new_letter = self._terminal_service.read_text("Guess a letter [a-z]: ")
     
     def _do_updates(self):
         '''Find if the letter guessed by user is in the guess word and Keeps track of guesses'''
-        self.guess = self._guesser.search_letter(self.word_slected,self.new_letter)
+        self.guess = self._guesser.search_letter(self.word_selected,self.new_letter)
         if self.guess == False:
-            self.numberofguesses += 1
+            self.numberOfGuesses += 1
         else:
-            if self.numberofguesses == 0:
-                self.numberofguesses = 0
-                self.guessedletters.append(self.new_letter)
+            if self.numberOfGuesses == 0:
+                self.numberOfGuesses = 0
+                self.guessedLetters.append(self.new_letter)
             else:
-                self.numberofguesses += -1
-                self.guessedletters.append(self.new_letter)
+                self.numberOfGuesses += -1
+                self.guessedLetters.append(self.new_letter)
 
     def _do_outputs(self):
         '''Shows the parachute modification according to the update data and displays the letters guessed by user if apply'''
-        continuegame = self._terminal_service.draw_parachute(self.word_slected,self.guessedletters,self.word_space,self.guess,self.numberofguesses)
-        if continuegame == False:
+        continueGame = self._terminal_service.draw_parachute(self.word_selected,self.guessedLetters,self.word_space,self.guess,self.numberOfGuesses)
+        if continueGame == False:
             self.is_playing = False
         else:
             self.is_playing = True
@@ -56,10 +64,10 @@ class Guesser:
     def __init__(self):
         pass
 
-    def search_letter(self,guessword,letter):
-        lettertimes = guessword.count(letter)
+    def search_letter(self,guessWord,letter):
+        letterTimes = guessWord.count(letter)
 
-        if lettertimes == 0:
+        if letterTimes == 0:
             guess = False
         else:
             guess = True
@@ -71,11 +79,11 @@ class TerminalService:
 
     def __init__(self):
         '''Constructs an empty list to save the word to be guessed'''
-        self.hideword = []
+        self.hideWord = []
 
-    def write_stripes(self,wordlenght,list):
+    def write_stripes(self,wordLength,list):
         '''displays first horizontal stripes for each letter of the word to be guessed'''
-        for i in range(wordlenght):
+        for i in range(wordLength):
             print("_",end=" "),
         print(" \n")
 
@@ -99,15 +107,15 @@ class TerminalService:
         """
         print(text)
 
-    def draw_parachute(self,guessword,letter,wordlenght,guess,number_of_guesses):
+    def draw_parachute(self,guessWord,letter,wordLength,guess,number_of_guesses):
         '''displays the word guessing status and the parachute situation'''
 
         i=0
         k = 0
-        for _ in (guessword):
-            if guessword[i] in letter:
-                print(guessword[i],end=" "),
-                a = guessword.count(guessword[i])
+        for _ in (guessWord):
+            if guessWord[i] in letter:
+                print(guessWord[i],end=" "),
+                a = guessWord.count(guessWord[i])
                 if a > 1:
                     k += 1
                 else:
@@ -117,7 +125,7 @@ class TerminalService:
             i += 1
         print(" \n")
 
-        if k == len(guessword):
+        if k == len(guessWord):
             print('  ___  ')
             print(' /___\ ')
             print(' \   / ')
@@ -232,22 +240,22 @@ class TerminalService:
 class WordArray:
     def __init__(self):
         self._array = ["Hello", "Shire", "Bring", "Acorn", "Please", "Close", "Front", "Frame", "Zebra", "Libra", "Speed", "Creed", "Anime", "Silly", "Smart", "Crazy", "Learn", "Stern", "Koala", "Brand", "Stand",  "Happy", "Style", "Miles", "Arrow", "Drama", "Allow", "Apply", "Child", "Crime", "Dress", "Dream", "Drink", "Enemy", "Entry", "Focus", "Fruit", "Glass", "Green", "Group", "Heart", "Guide", "Jones", "Judge", "Knife", "Layer", "March", "Major", "Metal", "Money", "Month", "Motor", "Music", "Panel", "Owner", "North", "Night", "Plane", "Plant", "Point", "Power", "Reply", "River", "Round", "Route", "Rugby", "Scale", "Scene", "Shape", "Smoke", "Sound", "South", "Space", "Sport", "Stock"]
-        self._wordselected = random.choice(self._array)
-        self._wordlenght = len(self._wordselected)
-        self._worddisplayed = []
+        self._wordSelected = random.choice(self._array)
+        self._wordLength = len(self._wordSelected)
+        self._wordDisplayed = []
 
-    def get_wordselected(self):
-        self._wordselected = self._wordselected.lower()
-        return self._wordselected
-    def get_wordlenght(self):
-        return self._wordlenght
-    def get_worddisplayed(self):
-        self._worddisplayed = list(self._wordselected)
+    def get_wordSelected(self):
+        self._wordSelected = self._wordSelected.lower()
+        return self._wordSelected
+    def get_wordLength(self):
+        return self._wordLength
+    def get_wordDisplayed(self):
+        self._wordDisplayed = list(self._wordSelected)
         i=0
-        for _ in (self._worddisplayed):
-            self._worddisplayed[i] = "_"
+        for _ in (self._wordDisplayed):
+            self._wordDisplayed[i] = "_"
             i += 1
-        return self._worddisplayed
+        return self._wordDisplayed
 
 def main():
     director = Director()
