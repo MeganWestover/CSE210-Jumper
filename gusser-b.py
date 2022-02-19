@@ -1,49 +1,5 @@
 import random
 
-
-# def main():
-
-#     words = []
-
-#     append_random_words(words)
-#     print(f"raundwords: {words}")
-
-#     append_random_words(words, 5)
-#     print(f"raundwords: {words}")
-
-
-# def append_random_words(word_list, quantity=1):
-#     list_of_words = [
-#         "arm",
-#         "car",
-#         "cloud",
-#         "head",
-#         "heal",
-#         "hydrogen",
-#         "jog",
-#         "join",
-#         "laugh",
-#         "love",
-#         "sleep",
-#         "smile",
-#         "speak",
-#         "sunshine",
-#         "toothbrush",
-#         "tree",
-#         "truth",
-#         "walk",
-#         "water",
-#     ]
-#     for _ in range(quantity):
-#         random_words = random.choice(list_of_words)
-#         word_list.append(random_words)
-
-
-# # Call main to start this program.
-# if __name__ == "__main__":
-#     main()
-
-
 def choose_words():
     list_of_words = [
         "arm",
@@ -85,3 +41,29 @@ while True:
     handle_guess(word)
     if input("Would you like to continue ").lower().startswith("n"):
         break
+
+
+# Another Try on the gusser class
+# from array import array
+import random
+
+
+class Guesser:
+    def __init__(self):
+        pass
+
+        self._location = random.choice(word_array)
+        self._distance = [0, 0]
+
+        def get_hint(self):
+            message = "Way off target"
+            if self._distance[-1] == 0:
+                message = "Good job you found it"
+            elif self._distance[-1] > self._distance[-2]:
+                message = "Guess again"
+            elif self._distance[-1] < self._distance[-2]:
+                message = "Getting closer! guess again"
+            return message
+
+        def word_found(self):
+            return self._distance[-1] == 0
