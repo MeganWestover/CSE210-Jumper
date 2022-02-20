@@ -73,7 +73,7 @@ class Guesser:
         else:
             guess = True
 
-        return guess'''
+        return guess
 
 class TerminalService:
     """This class helps us handle terminal operations"""
